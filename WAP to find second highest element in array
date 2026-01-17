@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+class SecondHighest {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        if (n < 2) {
+            System.out.println("Second highest element not possible");
+            return;
+        }
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int highest = Integer.MIN_VALUE;
+        int secondHighest = Integer.MIN_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > highest) {
+                secondHighest = highest;
+                highest = arr[i];
+            } else if (arr[i] > secondHighest && arr[i] != highest) {
+                secondHighest = arr[i];
+            }
+        }
+
+        if (secondHighest == Integer.MIN_VALUE) {
+            System.out.println("Second highest element not found");
+        } else {
+            System.out.println("Second highest element = " + secondHighest);
+        }
+    }
+}
