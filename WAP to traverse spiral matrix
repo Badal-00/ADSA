@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+class SpiralMatrix {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter rows and columns: ");
+        int r = sc.nextInt();
+        int c = sc.nextInt();
+
+        int[][] matrix = new int[r][c];
+
+        System.out.println("Enter matrix elements:");
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Spiral traversal of matrix:");
+
+        int top = 0, bottom = r - 1, left = 0, right = c - 1;
+
+        while (top <= bottom && left <= right) {
+            // Traverse top row
+            for (int j = left; j <= right; j++)
+                System.out.print(matrix[top][j] + " ");
+            top++;
+
+            // Traverse right column
+            for (int i = top; i <= bottom; i++)
+                System.out.print(matrix[i][right] + " ");
+            right--;
+
+            // Traverse bottom row
+            if (top <= bottom) {
+                for (int j = right; j >= left; j--)
+                    System.out.print(matrix[bottom][j] + " ");
+                bottom--;
+            }
+
+            // Traverse left column
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--)
+                    System.out.print(matrix[i][left] + " ");
+                left++;
+            }
+        }
+    }
+}
