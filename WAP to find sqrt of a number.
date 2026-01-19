@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class SquareRoot {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        if (n < 0) {
+            System.out.println("Square root not defined for negative numbers");
+            return;
+        }
+
+        int low = 0, high = n;
+        int ans = 0;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if ((long) mid * mid == n) {
+                ans = mid;
+                break;
+            }
+
+            if ((long) mid * mid < n) {
+                ans = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        System.out.println("Square root (floor value) = " + ans);
+    }
+}
